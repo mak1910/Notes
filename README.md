@@ -83,8 +83,8 @@ __Operator Overloading__
 
 ```C#
 class A {
-	public static A operator + (A left, A right) { .... }
-	public static int operator int (A a) { .... }
+  public static A operator + (A left, A right) { .... }
+  public static int operator int (A a) { .... }
 }
 ```
 - Similar to C++
@@ -102,9 +102,9 @@ __Extension Methods__
 
 ```C#
 public static class Extensions {
-	public static int getLength(this String str) {
-		return str.length();
-	}
+  public static int getLength(this String str) {
+    return str.length();
+  }
 }
 ```
 
@@ -120,20 +120,20 @@ __Exceptions__
 __Out and Ref keywords__
 ```C#
 class Example {
-	static void main(String[] args) {
-		int V1 = 0; // Must be initialized 
-		int V2; 		// Optional
+  static void main(String[] args) {
+    int V1 = 0; // Must be initialized 
+    int V2;     // Optional
 
-		Example1(ref V1);
-		Example2(out V2);
-	}
+    Example1(ref V1);
+    Example2(out V2);
+  }
 
-	static void Example1(ref int value) {
-		value = 1;
-	}
-	static void Example2(out int value) {
-		value = 2;
-	}
+  static void Example1(ref int value) {
+    value = 1;
+  }
+  static void Example2(out int value) {
+    value = 2;
+  }
 }
 ```
 - Ref must be initialized
@@ -154,13 +154,13 @@ __Inheritance with Contructors__
 
 ```java
 public class Animal {
-	String name;
-	Animal(String name) { this.name = name; }
+  String name;
+  Animal(String name) { this.name = name; }
 }
 
 public class Lion {
-	Lion(String name) { super(name); }
-	public void roar() { // Roar }
+  Lion(String name) { super(name); }
+  public void roar() { // Roar }
 }
 ```
 - Call super first. Then do your own things.
@@ -171,7 +171,7 @@ __Object Instantiation__
 Animal a = new Lion("Simba");
 Lion l = a;
 // a.roar() // Not allowed.
-l.roar(); 	// Allowed
+l.roar();   // Allowed
 ```
 
 __this keyword__
@@ -188,11 +188,11 @@ class Animal implements Runner {}
 ```
 ```java
 class Main {
-	static void run(Runner r) { r.run(); }
-	public static void main(String[] args) {
-		Animal a = new Animal();
-		run(a);
-	}
+  static void run(Runner r) { r.run(); }
+  public static void main(String[] args) {
+    Animal a = new Animal();
+    run(a);
+  }
 }
 ```
 - Casting can be implicit (as shown above) or explicit.
@@ -211,14 +211,14 @@ __Friend/Companion__
 
 ```scala
 class Hello {
-	def sayHello() {
-		println("Hello World")
-	}
+  def sayHello() {
+    println("Hello World")
+  }
 }
 object Hello {
-	def sayHi() {
-		println("I don't need an object")
-	}
+  def sayHi() {
+    println("I don't need an object")
+  }
 }
 ```
 ```scala
@@ -226,8 +226,29 @@ Hello h = new Hello()
 h.sayHello()
 Hello.sayHi()
 ```
-- Option types
-- Generics
+- No static keyword in Scala.
+- To add static methods to a class, use a class/object(singleton) pair of the same name.
+
+__Option types__
+
+```scala
+def getOperation(str: String): Option[String] = {
+  if(str == "+")
+    return Some("Add");
+  else
+    return None
+}
+```
+
+```scala
+val operation: Option[String] = getOperation();
+```
+
+- Can now do `operation.isDefined()` or provide a default value or use pattern matching.
+
+__Covariance and Contravariance__
+
+http://blog.kamkor.me/Covariance-And-Contravariance-In-Scala/
 
 Object Oriented Design
 ======================
@@ -237,7 +258,7 @@ __Where to put functions__
 ```C++
 if (f needs to be virtual) 
 {
-  make f a member function of C;	
+  make f a member function of C;  
 }
 else if (f is operator>> or operator<<) 
 {
@@ -249,15 +270,15 @@ else if (f is operator>> or operator<<)
 } 
 else if (f needs type conversions on its left-most argument) 
 {
-	make f a non-member function;
-	if (f needs access to non-public members of C)
-	{
-  	make f a friend of C;
-	}
+  make f a non-member function;
+  if (f needs access to non-public members of C)
+  {
+    make f a friend of C;
+  }
 } 
 else if (f can be implemented via the public interface)
 {
-	make f a non-member function;
+  make f a non-member function;
 }
 else
 {
