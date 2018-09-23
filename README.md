@@ -199,10 +199,30 @@ class Main {
 
 __Exceptions__
 
-- Checked Execptions
-- Collection Hashing List
-- throwing null pointer exception
-- finally
+- Checked Execptions need to explicitly be caught or thrown.
+
+__Collections__
+
+![Collections Diagram](https://www.javatpoint.com/images/java-collection-hierarchy.png "Collections diagram")
+
+- Remember to override hashCode() and equals() before using Custom Classes in collections.
+
+__Null Pointer Exceptions__
+
+```java
+Person p = Person.getPerson();
+if(p == null)
+  throw new PersonNotFoundException();
+p.printDetails();
+```
+
+- A lot of functions fail silently and return a null value.
+- Need to check for null value before performing further tasks.
+
+__Finally__
+
+- finally is always executed irrespective of whether you catch or throw the error.
+- [Explanation of various scenarios](https://www.geeksforgeeks.org/flow-control-in-try-catch-finally-in-java/)
 
 Scala
 =====
@@ -248,7 +268,11 @@ val operation: Option[String] = getOperation();
 
 __Covariance and Contravariance__
 
-http://blog.kamkor.me/Covariance-And-Contravariance-In-Scala/
+- [Explanation](http://blog.kamkor.me/Covariance-And-Contravariance-In-Scala/)
+
+__Other Cool Stuff__
+
+- [Passing functions in Scala](https://alvinalexander.com/scala/passing-function-to-function-argument-anonymous)
 
 Object Oriented Design
 ======================
