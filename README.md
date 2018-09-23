@@ -1,5 +1,3 @@
-# Notes
-
 C++
 ===
 
@@ -73,31 +71,161 @@ int main() {
 - Better than overriding << and outputstream.
 
 C#
+===
 
-- out/ref
+__Value and Reference Types__
+
+- Structs are value types. Live on Stack.
+- Classes are reference types. Live in Heap.
+
+
+__Operator Overloading__
+
+```C#
+class A {
+	public static A operator + (A left, A right) { .... }
+	public static int operator int (A a) { .... }
+}
+```
+- Similar to C++
+- Functions should be static
+- Also has conversion operators
+
+__Function overriding__
+
+- Functions are not virtual by default.
+- Virtual functions can be overriden. 
+- New creates a new function of same name that has no relation with function of base class.
+- Writing override in function signature is compulsory.
+
+__Extension Methods__
+
+```C#
+public static class Extensions {
+	public static int getLength(this String str) {
+		return str.length();
+	}
+}
+```
+
+- Class must be public static.
+- Function must also be static.
+- Adds extra functionality over existing classes.
+- Cannot access private members of class.
+
+__Exceptions__
+
+- Only unchecked exceptions, similar to RunTime exceptions in Java.
+
+__Out and Ref keywords__
+```C#
+class Example {
+	static void main(String[] args) {
+		int V1 = 0; // Must be initialized 
+		int V2; 		// Optional
+
+		Example1(ref V1);
+		Example2(out V2);
+	}
+
+	static void Example1(ref int value) {
+		value = 1;
+	}
+	static void Example2(out int value) {
+		value = 2;
+	}
+}
+```
+- Ref must be initialized
+- Out may not be initialized
+
 - covariant & contravariant
 - hiding
 - using keyword
 - Nullable
-- override/new
 - Comparing interfaces
 - Comparison IEquitable
 - Explicit/IMplicit Interfaces
 
 Java
+====
 
-- Object instantiation
-- this
-- Interface ( cast to new reference types )
-- Exceptions
+__Inheritance with Contructors__
+
+```java
+public class Animal {
+	String name;
+	Animal(String name) { this.name = name; }
+}
+
+public class Lion {
+	Lion(String name) { super(name); }
+	public void roar() { // Roar }
+}
+```
+- Call super first. Then do your own things.
+
+__Object Instantiation__
+
+```java
+Animal a = new Lion("Simba");
+Lion l = a;
+// a.roar() // Not allowed.
+l.roar(); 	// Allowed
+```
+
+__this keyword__
+- Used to refer to current class.
+- Can be used to call a different constructor of the same class.
+- Can be used as function parameter to sent *this* object to a function.
+
+
+__Interface ( cast to new reference types )__
+
+```java
+interface Runner { void run(); }
+class Animal implements Runner {}
+```
+```java
+class Main {
+	static void run(Runner r) { r.run(); }
+	public static void main(String[] args) {
+		Animal a = new Animal();
+		run(a);
+	}
+}
+```
+- Casting can be implicit (as shown above) or explicit.
+
+__Exceptions__
+
 - Checked Execptions
 - Collection Hashing List
 - throwing null pointer exception
 - finally
 
 Scala
+=====
 
-- Friend/Companion
+__Friend/Companion__
+
+```scala
+class Hello {
+	def sayHello() {
+		println("Hello World")
+	}
+}
+object Hello {
+	def sayHi() {
+		println("I don't need an object")
+	}
+}
+```
+```scala
+Hello h = new Hello()
+h.sayHello()
+Hello.sayHi()
+```
 - Option types
 - Generics
 
